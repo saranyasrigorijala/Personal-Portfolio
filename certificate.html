@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Certificate Details</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 30px;
+        background: #0a192f; /* Dark blue */
+        color: #dbeafe; /* Light blue-gray text */
+        line-height: 1.6;
+        margin: 0;
+      }
+
+      .cert-box {
+        background: #112240;
+        padding: 30px;
+        border-radius: 10px;
+        max-width: 900px;
+        margin: auto;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .cert-box h2 {
+        margin-bottom: 20px;
+        font-size: 28px;
+        color: #ffffff; /* Bright for contrast */
+      }
+
+      .cert-box p {
+        margin: 15px 0;
+        font-size: 18px;
+        color: #dbeafe;
+      }
+
+      .cert-box img {
+        width: 60%;
+        border-radius: 10px;
+        border: 2px solid #334155;
+        margin-top: 20px;
+      }
+
+      button {
+        margin-top: 20px;
+        padding: 12px 24px;
+        font-size: 16px;
+        background-color: #1e293b; /* Dark slate blue */
+        color: #dbeafe;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #3b82f6; /* Soft blue on hover */
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <button onclick="goBack()">⬅ Back to Portfolio</button>
+
+    <div class="cert-box">
+      <h2 id="certTitle">Loading...</h2>
+      <p id="certDesc"></p>
+      <img id="certImage" src="" alt="Certificate Image" />
+    </div>
+
+    <script>
+      const certificates = [
+        {
+          title: " Foundations of AIML Internship – 4 Weeks",
+          description:
+            "Conducted by Microsoft & Edunet Foundation under AICTE.",
+          image: "images/certificate6.png",
+        },
+        {
+          title: "AIML Virtual Internship – 10 Weeks",
+          description:
+            "Completed with AWS Academy & EduSkills under AICTE.",
+          image: "images/certificate5.png",
+        },
+        {
+          title: "L4G Generative AI Course – 45 Hours",
+          description:
+            "Completed a 45-hour Generative AI online course with Google Cloud, earning 24 skill badges across Beginner, Intermediate, and Advanced levels.",
+          image: "images/certificate4.png",
+        },
+        {
+          title: "Python Zero to Hero Course",
+          description:
+            "Completed the Python Zero to Hero course with GUVI, an HCL Group company.",
+          image: "images/certificate3.png",
+        },
+        {
+          title: "SAWIT AI Learnathon Program",
+          description:
+            "Completed the SAWIT AI Learnathon fundamentals with GUVI, supported by Google, HCLTech, and AICTE.",
+          image: "images/certificate2.png",
+        },
+        {
+          title: "Generative AI Course",
+          description:
+            "Completed the Generative AI course with GUVI, a Google for Education partner and HCL Group company.",
+          image: "images/certificate1.png",
+        },
+      ];
+
+      function getCertID() {
+        const params = new URLSearchParams(window.location.search);
+        return parseInt(params.get("id")) || 0;
+      }
+
+      const certID = getCertID();
+      const cert = certificates[certID] || certificates[0];
+
+      document.getElementById("certTitle").textContent = cert.title;
+      document.getElementById("certDesc").textContent = cert.description;
+      document.getElementById("certImage").src = cert.image;
+
+      function goBack() {
+        window.location.href = "index.html";
+        window.close();
+      }
+    </script>
+  </body>
+</html>

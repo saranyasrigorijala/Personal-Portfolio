@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Project Details</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 30px;
+        background: #0a192f; /* Dark blue */
+        color: #dbeafe; /* Light blue-gray text */
+        line-height: 1.6;
+      }
+
+      .cert-box {
+        background: #112240;
+        padding: 30px;
+        border-radius: 10px;
+        max-width: 900px;
+        margin: auto;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .cert-box h2 {
+        margin-bottom: 20px;
+        font-size: 28px;
+        text-align: center;
+        color: #ffffff; /* Bright for contrast */
+      }
+
+      .cert-box p {
+        text-align: justify;
+        margin: 15px 0;
+        font-size: 18px;
+        color: #dbeafe;
+      }
+
+      .image-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 25px;
+      }
+
+      .image-container img {
+        width: 350px;
+        border-radius: 10px;
+        border: 2px solid #334155;
+      }
+
+      .button-group {
+        margin-top: 30px;
+        display: flex;
+        gap: 20px;
+      }
+
+      button {
+        padding: 12px 24px;
+        font-size: 16px;
+        background-color: #1e293b; /* Dark slate blue */
+        color: #dbeafe;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #3b82f6; /* Soft blue on hover */
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cert-box container">
+      <h2 id="certTitle">Loading...</h2>
+      <p id="certDesc"></p>
+      <p id="certSkills"></p>
+      <div class="image-container" id="certImages"></div>
+
+      <div class="button-group">
+        <button onclick="goBack()">Back to Portfolio</button>
+        <button onclick="window.open('https://github.com/saranyasrigorijala/')">GitHub</button>
+      </div>
+    </div>
+
+    <script>
+      const certificates = [
+        {
+          title: "Loan Approval Prediction – Smart decisions backed by data.",
+          description:
+            "This project predicts whether a loan should be approved based on user input data like income, credit history, and employment status. I used machine learning techniques to analyze historical loan data and build a classification model. The goal was to help automate and improve loan decision-making. The interface takes user details and gives a quick prediction. It’s a practical example of ML in financial services.",
+          skills:
+            "I used Python, Pandas, and Scikit-learn for building the model, with visualization through Matplotlib. A big challenge was dealing with missing values and class imbalance. I learned preprocessing techniques like encoding and imputation. Tuning the model taught me the impact of parameters on accuracy. This project boosted my data analysis and model evaluation skills.",
+          images: ["images/loan1.png", "images/loan2.png"]
+        },
+        {
+          title: "Hangman Game – A fun twist to coding basics.",
+          description:
+            "This is a Python-based version of the classic Hangman game, played in the terminal. The player guesses letters to reveal a hidden word within limited tries. It tracks correct and incorrect guesses, giving instant feedback. The goal was to implement logic, loops, and conditions in an engaging way. It’s a simple yet rewarding game project.",
+          skills:
+            "I applied Python basics like loops, lists, conditionals, and string functions. Handling repeated guesses and wrong inputs was initially tricky. I learned how to structure programs cleanly and provide helpful messages to users. Debugging taught me patience and attention to detail. This helped strengthen my foundational coding skills.",
+          images: ["images/hangman1.png", "images/hangman2.png"],
+        },
+        {
+          title: "Restaurant Landing Page – Tastefully coded with design in mind.",
+          description:
+            "This is a static, responsive website designed for a restaurant to showcase its brand. It includes sections like menu, about, and contact, all styled with CSS. The layout is clean, user-friendly, and works across devices. The project aimed to create a web presence that’s both attractive and informative. It's a portfolio-ready UI sample.",
+          skills:
+            "I built it using HTML and CSS, focusing on layout, colors, and fonts. Making the site responsive was a challenge at first. I explored media queries and learned how to fix mobile layout issues. It taught me how small design choices impact user experience. This project improved my front-end development confidence.",
+          images: ["images/page1.png", "images/page2.png"],
+        },
+        {
+          title: "Personal Portfolio Website – My digital identity — clean, clear, and creative.",
+          description:
+            "This project is my personal portfolio website built to showcase my skills, projects, and background in a professional format. It includes sections like About Me, Projects, Resume, and Contact. The goal was to create a central hub to share my work with recruiters and peers. The site is simple, responsive, and easy to navigate. It represents who I am as a developer.",
+          skills:
+            "I used HTML, CSS, and basic JavaScript for structure and interactivity. Styling and layout alignment across screen sizes was initially challenging. I learned how to structure personal content in a clear and engaging way. It helped me understand responsive design and user interface thinking better. This portfolio has grown into my proudest ongoing project.",
+          images: ["images/portfolio1.png", "images/portfolio2.png"],
+        }
+      ];
+
+      function getCertID() {
+        const params = new URLSearchParams(window.location.search);
+        return parseInt(params.get("id")) || 0;
+      }
+
+      const certID = getCertID();
+      const cert = certificates[certID] || certificates[0];
+
+      document.getElementById("certTitle").textContent = cert.title;
+      document.getElementById("certDesc").textContent = cert.description;
+      document.getElementById("certSkills").textContent = cert.skills;
+
+      const imagesContainer = document.getElementById("certImages");
+      cert.images.forEach((src) => {
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = "Project Image";
+        imagesContainer.appendChild(img);
+      });
+
+      function goBack() {
+        window.location.href = "index.html";
+        window.close();
+      }
+    </script>
+  </body>
+</html>
